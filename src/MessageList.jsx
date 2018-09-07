@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Message from './Message.jsx';
 
-const MessageList = ({ messages }) => {
-  const messageListItems = messages.map(message =>
-  <Message key={message.id} username={message.username} content={message.content}/>)
-return (
-  <div className="message-list">
-    <ul>{messageListItems}</ul>
-  </div>
-);
+function MessageList(props){
+  const messageListItems = props.messages.map((message) =>
+    <Message
+      key={message.id}
+      type={message.type}
+      username={message.username}
+      content={message.content}
+      color={message.color}
+    />);
+  return (
+    <main className="messages">
+      <div>
+        {messageListItems}
+      </div>
+    </main>
+  );
 }
 
 export default MessageList;

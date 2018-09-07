@@ -1,90 +1,132 @@
 import React, { Component } from 'react';
 import { animateScroll } from "react-scroll";
+import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
-// import {v4 as uuid} from 'uuid';
-
-// let nextId = 3;
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-    username: this.props.username,
-      messages: []
+      currentUser: {
+        username: "Anonymous"
+      },
+      messages: [],
+      notification: "",
+      error: 'The message cannot be empty',
+      usersOnline: 0,
+      color: ""
     };
-    this.addMessage = this.addMessage.bind(this);
   }
-
-
 
   componentDidMount() {
-    let ws = new WebSocket("ws://localhost:3001");
-    let connections = ws;
-    this.connections = ws;
-
-    ws.onopen = event => {
-      console.log('Connected to server!');
+    this.ws = new WebSocket("ws://localhost:3001");
+    this.ws.onopen = () => {
+      console.log('Connected to server');
     };
 
+    this.ws.onmessage = event => {
 
-    let thisComponent = this;
+      const data = JSON.parse(event.data);
 
+      switch (data.type) {
+        case 'incomingNotification':
+          this.setState(
+            { messages: [...this.state.messages, data] },
+            this.scrollToBottom,
+          );
+          break;
 
-    ws.onmessage = event => {
-      var message = JSON.parse(event.data);
-      console.log('here sent from the app to server', JSON.parse(event.data));
-        // var content = "";
-        // debugger;
-        // switch(message.type) {
-        //   case "id":
-        //     id = message.id;
-        //     break;
-        //   case "userId":
-        //     id = message.userId;
-        //     // setUsername();
-        //     break;
-        //   case "username":
-        //     username = message.username;
-        //     break;
-        //   case "message":
-        //     content = message.tontent;
-        //     break;
-        // }
-        thisComponent.setState({ messages: [...this.state.messages, message] }, this.scrollToBottom);
+        case 'incomingMessage':
+          this.setState(
+            { messages: [...this.state.messages, data] },
+            this.scrollToBottom,
+          );
+          break;
 
+        case 'usersOnline':
+          this.setState(
+            { usersOnline: data.usersOnline }
+          );
+          break;
 
-    };
+        case 'color':
+          this.setState(
+            { color: data.color }
+          );
+          break;
+
+        default:
+          throw new Error("Unknown event type " + data.type);
+      }
+    }
   }
 
-  addMessage(message) {
-    this.connections.send(JSON.stringify(message));
+  usernameChanged = username => {
+    const prevUsername = this.state.currentUser.username;
+
+    this.setState({
+      currentUser: {
+        username: username
+      }
+    });
+
+    const nameChange = prevUsername + " changed username to " + username;
+
+    const notification = {
+      type: "postNotification",
+      content: nameChange
+    }
+
+    const postNotification = (message) => {
+      this.ws.send(JSON.stringify(message));
+    }
+    postNotification(notification);
+
   };
 
+  postMessage = content => {
+    let message = {
+      type: "postMessage",
+      username: this.state.currentUser.username,
+      content: content,
+      color: this.state.color
+    }
+
+    if (content.length > 0) {
+      this.ws.send(JSON.stringify(message));
+    }
+  };
 
   scrollToBottom() {
-    animateScroll.scrollToBottom({
-      id: message.id
-    });
+    animateScroll.scrollToBottom();
   }
 
   render() {
+
     return (
-      <main>
+      <div>
         <nav className="navbar">
-          <a href="#" className="navbar-brand">
-            Chatty
-          </a>
+          <a href="#" className="navbar-brand">Chatty (▰˘◡˘▰)</a>
+          <span id="usersOnline">
+            {this.state.usersOnline} user(s) online
+          </span>
+          <img id="onlineSign" src="build/_ionicons_svg_md-checkmark-circle-outline.svg"></img>
         </nav>
-        <div className="container">
-          <MessageList messages={this.state.messages} />
-          <ChatBar addMessage={this.addMessage} />
-        </div>
-      </main>
+
+        <MessageList
+          messages={this.state.messages}
+          notificationMsg={this.state.notification}
+        />
+
+        <ChatBar
+          currentUser={this.state.currentUser.username}
+          postMessage={this.postMessage}
+          usernameChanged={this.usernameChanged}
+          />
+      </div>
     );
   }
-
 }
-
 export default App;

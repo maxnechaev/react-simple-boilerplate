@@ -9,6 +9,25 @@ body {
   margin: 70px 0;
 }
 
+#onlineSign {
+  float: right;
+  margin: 20px 0 20px 0;
+  max-width: 15px;
+  background-color: #ADFF2F;
+  border-radius: 15px;
+
+}
+
+#usersOnline {
+  font-style: italic;
+  float: right;
+  padding-right: 5%;
+  margin: 20px 10px 20px 0;
+  padding-left: 10px;
+  color: white;
+  font-weight: bolder;
+}
+
 .chatbar {
   background: tomato;
   border-top: 1px solid black;
@@ -30,18 +49,11 @@ body {
   padding: 0 9px;
 }
 
-.error {
-    bottom: 100px;
+.notification {
+    width: 70%;
     font-style: italic;
-    right: 0;
-    padding: 5px;
-    position: fixed;
-    line-height: 40px;
-    margin: 15px;
+    text-align: center;
     color: #E04D0D;
-    background-color: white;
-    border: 2px solid red;  
-    border-radius: 10px;
 }
 
 .chatbar-message {
@@ -49,24 +61,33 @@ body {
 }
 
 .chatbar-username {
+  font-weight: bolder;
   flex: 2;
 }
 
 .message {
   display: flex;
-  padding: 5px;
 }
 
-.message.system {
-  font-style: italic;
-  padding: 5px 20px;
-}
-
+.currentTime,
+.message.system,
 .message-content,
-.message-username {
+.message-username  {
   overflow: hidden;
-  margin: 5px;
   padding: 0 10px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding: 15px;
+  font-style: italic;
+}
+
+.currentTime,
+.message.system, {
+  font-style: italic;
+}
+
+.currentTime {
+  color: grey;
 }
 
 .message-content {
