@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 
 class Message extends Component {
-
-  render() {
-    const { id, username, content, error } = this.props;
-
-      return (
-        <li className="message">
-          <div id="username" className="message-username">
-            <span><strong>
-
-            {username || "Anonymous"}
-
-            </strong></span>
-          </div>
-          <div id="message" className="message-content">
-            <span>{content}</span>
-          </div>
-        </li>
-      );
-    }
+  render(){
+    const { username, content, color } = this.props;
+    return (
+      <div className="message">
+        <span id="username" className="message-username">
+          {username}
+        </span>
+        <span id="message" className="message-content">
+          {content}
+        </span>
+      </div>
+    );
   }
-
+}
 
 export default Message;
+
+// // dangerouslySetInnerHTML={{__html: message.content}}
