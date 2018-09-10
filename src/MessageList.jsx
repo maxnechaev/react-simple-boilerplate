@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Message from './Message.jsx';
 
 function MessageList(props){
+  let time = new Date().toLocaleTimeString();
   const messageListItems = props.messages.map((message) =>
     <Message
       key={message.id}
@@ -9,6 +10,7 @@ function MessageList(props){
       username={message.username}
       content={message.content}
       color={message.color}
+      timeNow={time}
     />);
   return (
     <main className="messages">

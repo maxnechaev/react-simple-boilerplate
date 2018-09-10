@@ -14,7 +14,6 @@ class App extends Component {
       },
       messages: [],
       notification: "",
-      error: 'The message cannot be empty',
       usersOnline: 0,
       color: ""
     };

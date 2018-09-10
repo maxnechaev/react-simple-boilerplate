@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 function Message(props) {
 
-  const { id, username, content, type, color } = props;
+  const { id, username, content, type, color, timeNow } = props;
 
     if (type == "incomingMessage"){
       return (
         <div className="message">
           <span className="currentTime">
-            {new Date().toLocaleTimeString()}
+            {timeNow}
           </span>
-          <span id="username" className="message-username">
+          <span id="username" className="message-username" style={{color: color}}>
             {username}
           </span>
           <span id="message" className="message-content">
@@ -24,7 +24,7 @@ function Message(props) {
       return (
         <div className="message">
           <span className="currentTime">
-            {new Date().toLocaleTimeString()}
+            {props.timeNow}
           </span>
           <span className="system notification message">
             {content}

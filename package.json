@@ -45,10 +45,12 @@
     "sass-loader": "6.0.0",
     "sockjs-client": "^1.1.2",
     "style-loader": "0.13.1",
+    "url-loader": "^1.1.1",
     "webpack": "^2.7.0",
     "webpack-dev-server": "2.3.0"
   },
   "dependencies": {
+    "giphy-js-sdk-core": "^1.0.5",
     "ws": "6.0.0"
   }
 }
