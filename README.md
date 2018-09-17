@@ -12,7 +12,7 @@ git clone [REPO_GIT_ADDRESS]
 cd chatty
 npm i
 
-# to start the client
+# to start the server
 cd chatty_server && npm start
 
 # to start the client
@@ -27,9 +27,9 @@ open http://localhost:3000
 
 
 ## Screenshots
-!["Empty chat"](https://github.com/maxnechaev/tweeter/blob/master/public/images/normal_tweet.png)
-!["Different username colors"](https://github.com/maxnechaev/tweeter/blob/master/public/images/error_empty_tweet.png)
-!["Anonymous user sends a message"](https://github.com/maxnechaev/tweeter/blob/master/public/images/error_long_tweet.png)
+!["Empty chat"](https://github.com/maxnechaev/react-simple-boilerplate/blob/master/build/Chatty_Fig_1.png)
+!["Different username colors"](https://github.com/maxnechaev/react-simple-boilerplate/blob/master/build/Chatty_Fig_2.png)
+!["Anonymous user sends a message"](https://github.com/maxnechaev/react-simple-boilerplate/blob/master/build/Chatty_Fig_3.png)
 
 ### Static Files
 
