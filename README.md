@@ -23,6 +23,11 @@ npm start
 open http://localhost:3000
 ```
 
+## Screenshots
+!["Empty chat"](https://github.com/maxnechaev/tweeter/blob/master/public/images/normal_tweet.png)
+!["Different username colors"](https://github.com/maxnechaev/tweeter/blob/master/public/images/error_empty_tweet.png)
+!["Anonymous user sends a message"](https://github.com/maxnechaev/tweeter/blob/master/public/images/error_long_tweet.png)
+
 ### Static Files
 
 You can store static files like images, fonts, etc in the `build` folder.

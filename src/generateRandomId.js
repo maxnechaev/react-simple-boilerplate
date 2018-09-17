@@ -1,3 +1,5 @@
+// this part of code was not used, but I will keep it here 
+
 export const generateRandomId = (alphabet => {
   const alphabetLength = alphabet.length;
   const randoIter = (key, n) => {

@@ -4,6 +4,7 @@ import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
 
+// setting up the App and initial state
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +21,14 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    // initializing socket connection
     this.ws = new WebSocket("ws://localhost:3001");
     this.ws.onopen = () => {
       console.log('Connected to server');
     };
 
+    // on incoming message event handler, modifying the state
     this.ws.onmessage = event => {
 
       const data = JSON.parse(event.data);
@@ -62,6 +66,7 @@ class App extends Component {
     }
   }
 
+  //function to change a username and post system notification to the chat
   usernameChanged = username => {
     const prevUsername = this.state.currentUser.username;
 
@@ -98,6 +103,7 @@ class App extends Component {
     }
   };
 
+  // implementing react-scroll feature
   scrollToBottom() {
     animateScroll.scrollToBottom();
   }
@@ -123,7 +129,7 @@ class App extends Component {
           currentUser={this.state.currentUser.username}
           postMessage={this.postMessage}
           usernameChanged={this.usernameChanged}
-          />
+        />
       </div>
     );
   }

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 function ChatBar(props){
 
-  const usernameChanged = event =>{
+  // event handker to track a username change
+  const usernameChanged = event => {
     if (event.keyCode == 9 || event.key == 'Enter') {
       props.usernameChanged(event.target.value);
     }
   }
+  // message submission event handler
   const contentChanged = event => {
     if (event.key == 'Enter') {
       props.postMessage(event.target.value);

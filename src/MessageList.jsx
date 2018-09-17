@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message.jsx';
 
+// Mapping over the messages list
 function MessageList(props){
   let time = new Date().toLocaleTimeString();
   const messageListItems = props.messages.map((message) =>

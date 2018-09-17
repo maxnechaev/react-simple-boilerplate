@@ -28,6 +28,7 @@ module.exports = {
         ]
       },
       {
+        // configuration for future url uploader
         test: /\.(pdf|jpg|png|gif|svg|ico)$/i,
         use: [
           {
