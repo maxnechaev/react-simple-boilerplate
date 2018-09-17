@@ -1,27 +1,30 @@
-React Boilerplate
+Chatty, your very own tiny chat app.
 =====================
 
-A minimal and light dev environment for ReactJS.
+A light-weight chat app built with the use of React.
 
-### Usage
+### Install
 
 Clone the boilerplate and create your own git repo.
 
 ```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-cd react-simple-boilerplate
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
+git clone [REPO_GIT_ADDRESS]
+cd chatty
+npm i
+
+# to start the client
+cd chatty_server && npm start
+
+# to start the client
+cd ..
+npm start
+
 ```
 
 Install the dependencies and start the server.
 
-```
-npm install
-npm start
 open http://localhost:3000
-```
+
 
 ## Screenshots
 !["Empty chat"](https://github.com/maxnechaev/tweeter/blob/master/public/images/normal_tweet.png)
